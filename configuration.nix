@@ -103,12 +103,14 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    gh
     git
     nss
     p11-kit
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
+        eamodio.gitlens
       ];
     })
   ];
