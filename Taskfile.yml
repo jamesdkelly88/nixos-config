@@ -1,0 +1,20 @@
+version: '3'
+
+tasks:
+  hello:
+    cmds:
+      - echo "Hello from task"
+
+  rebuild:
+    cmds:
+      - sudo nixos-rebuild switch
+
+  cleanup:
+    cmds:
+      - sudo nix-env --delete-generations +5
+      - sudo nix-store --gc
+
+  update:
+    cmds:
+      - sudo nix-channel --update
+      - task: rebuild
