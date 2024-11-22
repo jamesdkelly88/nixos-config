@@ -75,6 +75,7 @@ in
     enable = true;
     desktopManager.cinnamon.enable = true;
     displayManager.lightdm.enable = true;
+    videoDrivers = [ "displaylink" "modesetting" ];
     xkb = {
       layout = "gb";
       variant = "";

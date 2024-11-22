@@ -5,14 +5,19 @@ tasks:
     cmds:
       - echo "Hello from task"
 
-  rebuild:
-    cmds:
-      - sudo nixos-rebuild switch
-
   cleanup:
     cmds:
       - sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
       - sudo nix-store --gc
+
+  displaylink:
+    cmds:
+      - curl -o displaylink-580.zip https://www.synaptics.com/sites/default/files/exe_files/2023-08/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.8-EXE.zip
+      - nix-prefetch-url file://$PWD/displaylink-580.zip
+
+  rebuild:
+    cmds:
+      - sudo nixos-rebuild switch
 
   test:
     cmds:

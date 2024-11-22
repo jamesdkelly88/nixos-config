@@ -16,6 +16,19 @@ sudo ln -s /home/james/nixos-config/configuration.nix /etc/nixos/configuration.n
 sudo nixos-rebuild switch
 ```
 
+### Displaylink Docking station
+
+This needs a binary file downloading first, or the `services.xserver.videoDrivers` line commenting out. To do the download (from this repository):
+
+```sh
+nix-shell
+task displaylink
+task rebuild
+rm displaylink-580.zip
+```
+
+The system needs to be rebooted to detect the displays.
+
 ## System install (to USB / HDD)
 
 Boot the minimal install
@@ -53,9 +66,7 @@ passwd -l root
 
 ## TODO
 
-- firefox system certificates
 - samba with SMB1
 - homemanager
 - essential packages
 - system settings
-- try out different desktops (deepin)
