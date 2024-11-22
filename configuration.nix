@@ -92,7 +92,7 @@ in
   users.users.james = {
     isNormalUser = true;
     description = "James Kelly";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
       guake
       joplin-desktop
@@ -101,6 +101,10 @@ in
     ];
   };
 
+  virtualisation.docker.enable = true;
+
+  ##### home-manager
+
   home-manager.users.james = { 
     home.stateVersion = "24.05";
     
@@ -108,7 +112,12 @@ in
         enable = true;
         userName = "James Kelly";
         userEmail = "jamesdkelly88@outlook.com";
+        extraConfig = {
+          credential.helper = "store";
+        };
     };
+
+    xsession.numlock.enable = true;
   };
 
   system.stateVersion = "24.05";
