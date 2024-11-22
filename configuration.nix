@@ -21,8 +21,7 @@ in
   environment.systemPackages = with pkgs; [
     gh
     git
-    nss
-    p11-kit
+    google-chrome
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
@@ -84,11 +83,21 @@ in
 
   time.timeZone = "Europe/London";
 
+  users.users.ansible = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
+  };
+
   users.users.james = {
     isNormalUser = true;
     description = "James Kelly";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      guake
+      joplin-desktop
+      terminator
+      thunderbird
+    ];
   };
 
   home-manager.users.james = { 
