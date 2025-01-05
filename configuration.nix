@@ -22,12 +22,6 @@ in
     gh
     git
     google-chrome
-    (vscode-with-extensions.override {
-      vscodeExtensions = with vscode-extensions; [
-        bbenoist.nix
-        eamodio.gitlens
-      ];
-    })
   ];
 
   hardware.pulseaudio.enable = false;
@@ -49,6 +43,7 @@ in
   };
 
   networking = {
+    enableIPv6  = false;
     firewall.enable = true;
     # firewall.allowedTCPPorts = [ ... ];
     # firewall.allowedUDPPorts = [ ... ];
@@ -115,6 +110,18 @@ in
         extraConfig = {
           credential.helper = "store";
         };
+    };
+    programs.vscode = {
+        enable = true;
+        package = pkgs.vscode;
+        extensions = with pkgs.vscode-extensions; [
+          bbenoist.nix
+          eamodio.gitlens
+          ms-vscode.powershell
+        ];
+        # userSettings = {
+        #     "terminal.integrated.fontFamily" = "Hack";
+        # };
     };
 
     xsession.numlock.enable = true;
