@@ -11,6 +11,8 @@ in
       (import "${home-manager}/nixos")
     ];
 
+  boot.kernel.sysctl."net.ipv6.conf.wlp1s0.disable_ipv6" = true;
+
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
