@@ -120,6 +120,14 @@ in
           bbenoist.nix
           eamodio.gitlens
           ms-vscode.powershell
+          yzhang.markdown-all-in-one
+        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "prettify-json";
+            publisher = "mohsen1";
+            version = "0.0.3";
+            sha256 = "sha256-lvds+lFDzt1s6RikhrnAKJipRHU+Dk85ZO49d1sA8uo=";
+          }
         ];
         # userSettings = {
         #     "terminal.integrated.fontFamily" = "Hack";
