@@ -24,6 +24,28 @@ in
     gh
     git
     google-chrome
+    (vscode-with-extensions.override {
+      vscodeExtensions = with vscode-extensions; [
+        bbenoist.nix
+        eamodio.gitlens
+        hashicorp.terraform
+        ms-azuretools.vscode-docker
+        ms-kubernetes-tools.vscode-kubernetes-tools
+        ms-vscode.powershell
+        ms-vscode-remote.remote-ssh
+        redhat.ansible
+        redhat.vscode-xml
+        redhat.vscode-yaml
+        yzhang.markdown-all-in-one
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "prettify-json";
+          publisher = "mohsen1";
+          version = "0.0.3";
+          sha256 = "sha256-lvds+lFDzt1s6RikhrnAKJipRHU+Dk85ZO49d1sA8uo=";
+        }
+      ];
+    })
   ];
 
   hardware.pulseaudio.enable = false;
@@ -112,26 +134,6 @@ in
         extraConfig = {
           credential.helper = "store";
         };
-    };
-    programs.vscode = {
-        enable = true;
-        package = pkgs.vscode;
-        extensions = with pkgs.vscode-extensions; [
-          bbenoist.nix
-          eamodio.gitlens
-          ms-vscode.powershell
-          yzhang.markdown-all-in-one
-        ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-          {
-            name = "prettify-json";
-            publisher = "mohsen1";
-            version = "0.0.3";
-            sha256 = "sha256-lvds+lFDzt1s6RikhrnAKJipRHU+Dk85ZO49d1sA8uo=";
-          }
-        ];
-        # userSettings = {
-        #     "terminal.integrated.fontFamily" = "Hack";
-        # };
     };
 
     xsession.numlock.enable = true;
