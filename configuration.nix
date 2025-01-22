@@ -95,7 +95,13 @@ in
   services.xserver = {
     enable = true;
     desktopManager.cinnamon.enable = true;
-    displayManager.lightdm.enable = true;
+    displayManager.lightdm = {
+      enable = true;
+      greeters = {
+        slick.enable = false;
+        pantheon.enable = true;
+      };
+    };
     videoDrivers = [ "displaylink" "modesetting" ];
     xkb = {
       layout = "gb";
