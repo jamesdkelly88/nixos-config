@@ -21,9 +21,11 @@ in
   console.keyMap = "uk";
 
   environment.systemPackages = with pkgs; [
+    bat
     gh
     git
     google-chrome
+    tldr
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
