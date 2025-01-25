@@ -99,7 +99,7 @@ in
       enable = true;
       greeters = {
         slick.enable = false;
-        pantheon.enable = true;
+        gtk.enable = true;
       };
     };
     videoDrivers = [ "displaylink" "modesetting" ];
