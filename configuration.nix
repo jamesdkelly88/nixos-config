@@ -123,6 +123,10 @@ in
     packages = with pkgs; [
       guake
       joplin-desktop
+      p7zip
+      pcloud
+      pinta
+      remmina
       terminator
       thunderbird
     ];
