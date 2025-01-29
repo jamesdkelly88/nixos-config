@@ -92,6 +92,13 @@ in
 
   services.printing.enable = true;
 
+  services.samba = {
+    enable = true;
+    extraConfig = ''
+      client min protocol = NT1
+    '';
+  };
+
   services.xserver = {
     enable = true;
     desktopManager.cinnamon.enable = true;
