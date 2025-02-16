@@ -1,29 +1,50 @@
 version: '3'
 
+vars:
+  CHANNEL: 24.11
+
 tasks:
   hello:
     cmds:
       - echo "Hello from task"
 
+  channel:
+    cmds:
+      - sudo nix-channel --list
+    desc: Show current channel
+
   cleanup:
     cmds:
       - sudo nix-env --delete-generations +5 --profile /nix/var/nix/profiles/system
       - sudo nix-store --gc
+    desc: Cleanup all but 5 generations, and unused packages
 
   displaylink:
     cmds:
-      - curl -o displaylink-580.zip https://www.synaptics.com/sites/default/files/exe_files/2023-08/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu5.8-EXE.zip
-      - nix-prefetch-url file://$PWD/displaylink-580.zip
+      - curl -o displaylink-600.zip https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip
+      - nix-prefetch-url file://$PWD/displaylink-600.zip
+    desc: Fetch binaries for docking station
 
   rebuild:
     cmds:
       - sudo nixos-rebuild switch
+    desc: Deploy configuration changes
 
   test:
     cmds:
       - sudo nixos-rebuild dry-build
+    desc: Test configuration changes
 
   update:
     cmds:
       - sudo nix-channel --update
       - task: rebuild
+    desc: Update packages
+
+  upgrade:
+    cmds:
+    - task: displaylink
+    - sudo nix-channel --add https://channels.nixos.org/nixos-{{.CHANNEL}} nixos
+    - sudo nixos-rebuild boot --upgrade
+    - echo "Reboot to activate changes"
+    desc: Upgrade NixOS to {{.CHANNEL}} - also need to update home manager and possibly displaylink

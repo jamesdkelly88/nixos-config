@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz";
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
   hostname = "lt16";
 in
 {
@@ -94,9 +94,16 @@ in
 
   services.samba = {
     enable = true;
-    extraConfig = ''
-      client min protocol = NT1
-    '';
+    settings = {
+      global = {
+        "invalid users" = [
+          "root"
+        ];
+        "passwd program" = "/run/wrappers/bin/passwd %u";
+        security = "user";
+        "client min protocol" = "NT1";
+      };
+    };
   };
 
   services.xserver = {
