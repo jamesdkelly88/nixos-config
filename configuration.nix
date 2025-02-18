@@ -140,6 +140,7 @@ in
       p7zip
       pcloud
       pinta
+      powershell
       remmina
       terminator
       thunderbird
