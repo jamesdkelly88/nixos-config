@@ -166,6 +166,16 @@ in
         };
     };
 
+    xdg.configFile = {
+      "nvim" = {
+        source = pkgs.fetchFromGitHub {
+          owner = "jamesdkelly88";
+          repo = "neovim";
+          rev = "main";
+        };
+      };
+    };
+
     xsession.numlock.enable = true;
   };
 
