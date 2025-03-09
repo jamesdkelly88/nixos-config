@@ -137,6 +137,7 @@ in
     packages = with pkgs; [
       guake
       joplin-desktop
+      neovim
       p7zip
       pcloud
       pinta
