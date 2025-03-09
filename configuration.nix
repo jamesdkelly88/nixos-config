@@ -143,8 +143,10 @@ in
       pinta
       powershell
       remmina
+      ripgrep
       terminator
       thunderbird
+      unzip
     ];
   };
 
