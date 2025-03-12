@@ -135,6 +135,7 @@ in
     description = "James Kelly";
     extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
+      gcc
       guake
       joplin-desktop
       neovim
@@ -143,8 +144,10 @@ in
       pinta
       powershell
       remmina
+      ripgrep
       terminator
       thunderbird
+      unzip
     ];
   };
 
