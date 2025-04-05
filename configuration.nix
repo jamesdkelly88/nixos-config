@@ -3,6 +3,17 @@
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz";
   hostname = "lt16";
+  patchelfFixes = pkgs.patchelfUnstable.overrideAttrs (_finalAttrs: _previousAttrs: {
+    src = pkgs.fetchFromGitHub {
+      owner = "Patryk27";
+      repo = "patchelf";
+      rev = "527926dd9d7f1468aa12f56afe6dcc976941fedb";
+      sha256 = "sha256-3I089F2kgGMidR4hntxz5CKzZh5xoiUwUsUwLFUEXqE=";
+    };
+  });
+  pcloudFixes = pkgs.pcloud.overrideAttrs (_finalAttrs:previousAttrs: {
+    nativeBuildInputs = previousAttrs.nativeBuildInputs ++ [ patchelfFixes ];
+  });
 in
 {
   imports =
@@ -26,6 +37,8 @@ in
     git
     google-chrome
     tldr
+    unixODBC
+    unixODBCDrivers.msodbcsql18
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
@@ -49,6 +62,8 @@ in
       ];
     })
   ];
+
+  environment.unixODBCDrivers = with pkgs.unixODBCDrivers; [ msodbcsql18 ];
 
   hardware.pulseaudio.enable = false;
 
@@ -135,12 +150,13 @@ in
     description = "James Kelly";
     extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
+      calibre
       gcc
       guake
       joplin-desktop
       neovim
       p7zip
-      pcloud
+      pcloudFixes
       pinta
       powershell
       remmina
