@@ -32,6 +32,7 @@ in
   console.keyMap = "uk";
 
   environment.systemPackages = with pkgs; [
+    ansible
     bat
     gh
     git
