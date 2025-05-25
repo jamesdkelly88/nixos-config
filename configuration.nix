@@ -32,7 +32,6 @@ in
   console.keyMap = "uk";
 
   environment.systemPackages = with pkgs; [
-    ansible
     bat
     gh
     git
@@ -47,6 +46,7 @@ in
         hashicorp.terraform
         ms-azuretools.vscode-docker
         ms-kubernetes-tools.vscode-kubernetes-tools
+        ms-python.python
         ms-vscode.powershell
         ms-vscode-remote.remote-ssh
         redhat.ansible
