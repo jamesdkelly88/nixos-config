@@ -35,7 +35,6 @@ in
     bat
     gh
     git
-    google-chrome
     tldr
     unixODBC
     unixODBCDrivers.msodbcsql18
@@ -97,6 +96,12 @@ in
 
   security.rtkit.enable = true;
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   services.openssh.enable = true;
 
   services.pipewire = {
@@ -151,6 +156,8 @@ in
     description = "James Kelly";
     extraGroups = [ "docker" "networkmanager" "wheel" ];
     packages = with pkgs; [
+      brave
+      caffeine-ng
       calibre
       gcc
       guake
