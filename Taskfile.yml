@@ -1,7 +1,9 @@
 version: '3'
 
 vars:
-  CHANNEL: 24.11
+  CHANNEL: 25.05
+  SYNAPTICS_URL: https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip
+  SYNAPTICS_VER: 610
 
 tasks:
   hello:
@@ -21,8 +23,8 @@ tasks:
 
   displaylink:
     cmds:
-      - curl -o displaylink-600.zip https://www.synaptics.com/sites/default/files/exe_files/2024-05/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.0-EXE.zip
-      - nix-prefetch-url file://$PWD/displaylink-600.zip
+      - curl -o displaylink-{{.SYNAPTICS_VER}}.zip {{.SYNAPTICS_URL}}
+      - nix-prefetch-url file://$PWD/displaylink-{{.SYNAPTICS_VER}}.zip
     desc: Fetch binaries for docking station
 
   rebuild:
