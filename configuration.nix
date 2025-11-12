@@ -41,8 +41,11 @@ in
     (vscode-with-extensions.override {
       vscodeExtensions = with vscode-extensions; [
         bbenoist.nix
+        bierner.markdown-mermaid
         eamodio.gitlens
+        golang.go
         hashicorp.terraform
+        mechatroner.rainbow-csv
         ms-azuretools.vscode-docker
         ms-kubernetes-tools.vscode-kubernetes-tools
         ms-python.python
@@ -59,13 +62,20 @@ in
           version = "0.0.3";
           sha256 = "sha256-lvds+lFDzt1s6RikhrnAKJipRHU+Dk85ZO49d1sA8uo=";
         }
+      ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+        {
+          name = "vscode-mermaid-editor";
+          publisher = "tomoyukim";
+          version = "0.19.1";
+          sha256 = "sha256-MZkR9wPTj+TwhQP0kbH4XqlTvQwfkbiZdfzA10Q9z5A=";
+        }
       ];
     })
   ];
 
   environment.unixODBCDrivers = with pkgs.unixODBCDrivers; [ msodbcsql18 ];
 
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
 
   # Select internationalisation properties.
   i18n = {
@@ -181,6 +191,13 @@ in
 
   home-manager.users.james = { 
     home.stateVersion = "24.05";
+
+    programs.bash = {
+      shellAliases = {
+        lsl = "ls -l";
+        lsal = "ls -al";
+      };
+    };
     
     programs.git = {
         enable = true;
