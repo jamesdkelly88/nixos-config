@@ -1,11 +1,17 @@
 version: '3'
 
 vars:
-  CHANNEL: 25.05
-  SYNAPTICS_URL: https://www.synaptics.com/sites/default/files/exe_files/2024-10/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.1-EXE.zip
-  SYNAPTICS_VER: 610
+  CHANNEL: 25.11
+  SYNAPTICS_URL: https://www.synaptics.com/sites/default/files/exe_files/2025-09/DisplayLink%20USB%20Graphics%20Software%20for%20Ubuntu6.2-EXE.zip
+  SYNAPTICS_VER: 620
 
 tasks:
+
+  list:
+    cmds:
+      - task --list
+    silent: true
+
   hello:
     cmds:
       - echo "Hello from task"

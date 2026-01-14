@@ -64,6 +64,17 @@ nixos-install
 passwd -l root
 ```
 
+## Upgrading
+
+- Update the `CHANNEL` in the Taskfile
+- Visit [NixOS](https://search.nixos.org/packages) and check the version of the `displaylink` package
+- Update the `SYNAPTICS_VER` in the Taskfile
+- Visit [Synaptics](https://www.synaptics.com/products/displaylink-graphics/downloads/ubuntu) and get the URL for the `Latest official driver`
+- Update the `SYNAPTICS_URL` in the Taskfile
+- Run `nix-shell`
+- Run `task upgrade`
+- Reboot
+
 ## TODO
 
 - samba with SMB1
