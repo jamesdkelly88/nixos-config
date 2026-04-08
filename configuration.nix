@@ -201,10 +201,12 @@ in
     
     programs.git = {
         enable = true;
-        userName = "James Kelly";
-        userEmail = "jamesdkelly88@outlook.com";
-        extraConfig = {
+        settings = {
           credential.helper = "store";
+          user = {
+            email = "jamesdkelly88@outlook.com";
+            name = "James Kelly";
+          };
         };
     };
 
