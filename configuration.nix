@@ -164,7 +164,7 @@ in
   users.users.james = {
     isNormalUser = true;
     description = "James Kelly";
-    extraGroups = [ "docker" "networkmanager" "wheel" ];
+    extraGroups = [ "docker" "networkmanager" "vboxusers" "wheel" ];
     packages = with pkgs; [
       brave
       caffeine-ng
@@ -186,6 +186,7 @@ in
   };
 
   virtualisation.docker.enable = true;
+  virtualisation.virtualbox.host.enable = true;
 
   ##### home-manager
 
