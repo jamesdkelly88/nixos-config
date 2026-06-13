@@ -24,6 +24,10 @@ in
 
   boot.kernel.sysctl."net.ipv6.conf.wlp1s0.disable_ipv6" = true;
 
+  boot.kernelParams = [
+    "acpi_backlight=native"
+  ];
+
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
@@ -164,7 +168,7 @@ in
   users.users.james = {
     isNormalUser = true;
     description = "James Kelly";
-    extraGroups = [ "docker" "networkmanager" "vboxusers" "wheel" ];
+    extraGroups = [ "docker" "networkmanager" "vboxusers" "video" "wheel" ];
     packages = with pkgs; [
       brave
       caffeine-ng
